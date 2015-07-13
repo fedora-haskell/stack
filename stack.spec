@@ -101,14 +101,12 @@ intended for use by the executable.
 %global cabal cabal
 [ -d "$HOME/.cabal" ] || %cabal update
 %cabal sandbox init
-%cabal install
+%cabal install --force-reinstalls
 
 
 %install
 mkdir -p %{buildroot}%{_bindir}
 install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
-
-rm %{buildroot}%{ghc_pkgdocdir}/LICENSE
 
 
 %check
@@ -118,7 +116,7 @@ rm %{buildroot}%{ghc_pkgdocdir}/LICENSE
 
 
 %files
-%license LICENSE
+%license .cabal-sandbox/share/doc/*/*
 %doc README.md
 %{_bindir}/%{name}
 
