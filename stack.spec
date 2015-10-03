@@ -95,6 +95,8 @@ BuildRequires:  ghc-QuickCheck-devel
 BuildRequires:  ghc-hspec-devel
 %endif
 # End cabal-rpm deps
+# for ignore -> pcre-heavy
+BuildRequires:  ghc-pcre-light-devel
 BuildRequires:  cabal-install > 1.18
 
 %description
