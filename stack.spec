@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        0.1.3.1
+Version:        0.1.5.0
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -23,6 +23,7 @@ BuildRequires:  ghc-base16-bytestring-devel
 BuildRequires:  ghc-base64-bytestring-devel
 #BuildRequires:  ghc-bifunctors-devel
 BuildRequires:  ghc-binary-devel
+#BuildRequires:  ghc-binary-tagged-devel
 BuildRequires:  ghc-blaze-builder-devel
 BuildRequires:  ghc-byteable-devel
 BuildRequires:  ghc-bytestring-devel
@@ -33,7 +34,6 @@ BuildRequires:  ghc-containers-devel
 #BuildRequires:  ghc-cryptohash-conduit-devel
 BuildRequires:  ghc-cryptohash-devel
 BuildRequires:  ghc-deepseq-devel
-BuildRequires:  ghc-deepseq-generics-devel
 BuildRequires:  ghc-directory-devel
 #BuildRequires:  ghc-either-devel
 #BuildRequires:  ghc-enclosed-exceptions-devel
@@ -43,13 +43,15 @@ BuildRequires:  ghc-fast-logger-devel
 #BuildRequires:  ghc-file-embed-devel
 #BuildRequires:  ghc-filelock-devel
 BuildRequires:  ghc-filepath-devel
-#BuildRequires:  ghc-fsnotify-devel
+BuildRequires:  ghc-fsnotify-devel
+#BuildRequires:  ghc-gitrev-devel
 BuildRequires:  ghc-hashable-devel
 #BuildRequires:  ghc-hastache-devel
 #BuildRequires:  ghc-http-client-devel
 #BuildRequires:  ghc-http-client-tls-devel
 #BuildRequires:  ghc-http-conduit-devel
 BuildRequires:  ghc-http-types-devel
+#BuildRequires:  ghc-ignore-devel
 BuildRequires:  ghc-lifted-base-devel
 BuildRequires:  ghc-monad-control-devel
 BuildRequires:  ghc-monad-logger-devel
@@ -131,6 +133,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Sat Oct  3 2015 Jens Petersen <petersen@fedoraproject.org> - 0.1.5.0-1
+- 0.1.5.0
+
 * Wed Sep 02 2015 Jens Petersen <petersen@redhat.com> - 0.1.3.1-1
 - update to 0.1.3.1
 
