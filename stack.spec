@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        0.1.5.0
+Version:        0.1.6.0
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -18,6 +18,7 @@ BuildRequires:  ghc-rpm-macros
 #BuildRequires:  chrpath
 %if 0%{?fedora} >= 22
 BuildRequires:  ghc-aeson-devel
+BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-async-devel
 BuildRequires:  ghc-attoparsec-devel
 BuildRequires:  ghc-base16-bytestring-devel
@@ -156,7 +157,7 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %files
-%license .cabal-sandbox/share/doc/*/*
+%doc LICENSE .cabal-sandbox/share/doc/*/*
 %doc README.md
 %{_bindir}/%{name}
 
