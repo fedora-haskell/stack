@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        0.1.6.0
+Version:        0.1.8.0
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -43,6 +43,7 @@ BuildRequires:  ghc-cryptohash-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 %if 0%{?fedora} >= 22
+BuildRequires:  ghc-edit-distance-devel
 #BuildRequires:  ghc-either-devel
 #BuildRequires:  ghc-enclosed-exceptions-devel
 BuildRequires:  ghc-exceptions-devel
@@ -57,11 +58,13 @@ BuildRequires:  ghc-fsnotify-devel
 #BuildRequires:  ghc-gitrev-devel
 BuildRequires:  ghc-hashable-devel
 #BuildRequires:  ghc-hastache-devel
+%endif
+BuildRequires:  ghc-hpc-devel
+%if 0%{?fedora} >= 22
 #BuildRequires:  ghc-http-client-devel
 #BuildRequires:  ghc-http-client-tls-devel
 #BuildRequires:  ghc-http-conduit-devel
 BuildRequires:  ghc-http-types-devel
-#BuildRequires:  ghc-ignore-devel
 BuildRequires:  ghc-lifted-base-devel
 BuildRequires:  ghc-monad-control-devel
 BuildRequires:  ghc-monad-logger-devel
@@ -84,6 +87,9 @@ BuildRequires:  ghc-process-devel
 BuildRequires:  ghc-resourcet-devel
 #BuildRequires:  ghc-retry-devel
 BuildRequires:  ghc-safe-devel
+%endif
+BuildRequires:  ghc-semigroups-devel
+%if 0%{?fedora} >= 22
 BuildRequires:  ghc-split-devel
 BuildRequires:  ghc-stm-devel
 BuildRequires:  ghc-streaming-commons-devel
@@ -163,6 +169,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Mon Nov 30 2015 Jens Petersen <petersen@redhat.com> - 0.1.8.0-1
+- 0.1.8.0
+
 * Thu Oct 22 2015 Jens Petersen <petersen@redhat.com> - 0.1.6.0-1
 - update to 0.1.6.0
 
