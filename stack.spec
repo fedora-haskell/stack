@@ -163,6 +163,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Thu Oct 22 2015 Jens Petersen <petersen@redhat.com> - 0.1.6.0-1
+- update to 0.1.6.0
+
 * Sat Oct  3 2015 Jens Petersen <petersen@fedoraproject.org> - 0.1.5.0-1
 - 0.1.5.0
 
