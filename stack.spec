@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        0.1.8.0
+Version:        0.1.10.0
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -16,7 +16,7 @@ BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
 #BuildRequires:  chrpath
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-aeson-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-async-devel
@@ -30,19 +30,19 @@ BuildRequires:  ghc-blaze-builder-devel
 BuildRequires:  ghc-byteable-devel
 %endif
 BuildRequires:  ghc-bytestring-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 #BuildRequires:  ghc-conduit-combinators-devel
 BuildRequires:  ghc-conduit-devel
 BuildRequires:  ghc-conduit-extra-devel
 %endif
 BuildRequires:  ghc-containers-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 #BuildRequires:  ghc-cryptohash-conduit-devel
 BuildRequires:  ghc-cryptohash-devel
 %endif
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-edit-distance-devel
 #BuildRequires:  ghc-either-devel
 #BuildRequires:  ghc-enclosed-exceptions-devel
@@ -53,14 +53,14 @@ BuildRequires:  ghc-fast-logger-devel
 #BuildRequires:  ghc-filelock-devel
 %endif
 BuildRequires:  ghc-filepath-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-fsnotify-devel
 #BuildRequires:  ghc-gitrev-devel
 BuildRequires:  ghc-hashable-devel
 #BuildRequires:  ghc-hastache-devel
 %endif
 BuildRequires:  ghc-hpc-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 #BuildRequires:  ghc-http-client-devel
 #BuildRequires:  ghc-http-client-tls-devel
 #BuildRequires:  ghc-http-conduit-devel
@@ -72,7 +72,7 @@ BuildRequires:  ghc-monad-loops-devel
 BuildRequires:  ghc-mtl-devel
 %endif
 BuildRequires:  ghc-old-locale-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-optparse-applicative-devel
 #BuildRequires:  ghc-optparse-simple-devel
 #BuildRequires:  ghc-path-devel
@@ -82,34 +82,34 @@ BuildRequires:  ghc-optparse-applicative-devel
 %endif
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 #BuildRequires:  ghc-project-template-devel
 BuildRequires:  ghc-resourcet-devel
 #BuildRequires:  ghc-retry-devel
 BuildRequires:  ghc-safe-devel
 %endif
 BuildRequires:  ghc-semigroups-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-split-devel
 BuildRequires:  ghc-stm-devel
 BuildRequires:  ghc-streaming-commons-devel
 BuildRequires:  ghc-tar-devel
 %endif
 BuildRequires:  ghc-template-haskell-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-temporary-devel
 BuildRequires:  ghc-text-devel
 %endif
 BuildRequires:  ghc-time-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-transformers-base-devel
 %endif
 BuildRequires:  ghc-transformers-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-unix-compat-devel
 %endif
 BuildRequires:  ghc-unix-devel
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-unordered-containers-devel
 BuildRequires:  ghc-vector-binary-instances-devel
 BuildRequires:  ghc-vector-devel
@@ -125,7 +125,7 @@ BuildRequires:  ghc-hspec-devel
 %endif
 # End cabal-rpm deps
 # for ignore -> pcre-heavy
-%if 0%{?fedora} >= 22
+%if 0%{?nofedora} >= 22
 BuildRequires:  ghc-pcre-light-devel
 %else
 BuildRequires:  pcre-devel
@@ -169,6 +169,10 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Wed Dec  9 2015 Jens Petersen <petersen@redhat.com> - 0.1.10.0-1
+- update to 0.1.10.0
+- build with ghc-7.10 and assume only ghc libs
+
 * Mon Nov 30 2015 Jens Petersen <petersen@redhat.com> - 0.1.8.0-1
 - 0.1.8.0
 
