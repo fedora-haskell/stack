@@ -16,109 +16,21 @@ Source1:        https://www.stackage.org/lts-3/cabal.config
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
-#BuildRequires:  chrpath
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-aeson-devel
-BuildRequires:  ghc-ansi-terminal-devel
-BuildRequires:  ghc-async-devel
-BuildRequires:  ghc-attoparsec-devel
-BuildRequires:  ghc-base16-bytestring-devel
-BuildRequires:  ghc-base64-bytestring-devel
-#BuildRequires:  ghc-bifunctors-devel
 BuildRequires:  ghc-binary-devel
-#BuildRequires:  ghc-binary-tagged-devel
-BuildRequires:  ghc-blaze-builder-devel
-BuildRequires:  ghc-byteable-devel
-%endif
 BuildRequires:  ghc-bytestring-devel
-%if 0%{?nofedora} >= 22
-#BuildRequires:  ghc-conduit-combinators-devel
-BuildRequires:  ghc-conduit-devel
-BuildRequires:  ghc-conduit-extra-devel
-%endif
 BuildRequires:  ghc-containers-devel
-%if 0%{?nofedora} >= 22
-#BuildRequires:  ghc-cryptohash-conduit-devel
-BuildRequires:  ghc-cryptohash-devel
-%endif
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-edit-distance-devel
-#BuildRequires:  ghc-either-devel
-#BuildRequires:  ghc-enclosed-exceptions-devel
-BuildRequires:  ghc-exceptions-devel
-#BuildRequires:  ghc-extra-devel
-BuildRequires:  ghc-fast-logger-devel
-#BuildRequires:  ghc-file-embed-devel
-#BuildRequires:  ghc-filelock-devel
-%endif
 BuildRequires:  ghc-filepath-devel
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-fsnotify-devel
-#BuildRequires:  ghc-gitrev-devel
-BuildRequires:  ghc-hashable-devel
-#BuildRequires:  ghc-hastache-devel
-%endif
 BuildRequires:  ghc-hpc-devel
-%if 0%{?nofedora} >= 22
-#BuildRequires:  ghc-http-client-devel
-#BuildRequires:  ghc-http-client-tls-devel
-#BuildRequires:  ghc-http-conduit-devel
-BuildRequires:  ghc-http-types-devel
-BuildRequires:  ghc-lifted-base-devel
-BuildRequires:  ghc-monad-control-devel
-BuildRequires:  ghc-monad-logger-devel
-BuildRequires:  ghc-monad-loops-devel
-BuildRequires:  ghc-mtl-devel
-%endif
-BuildRequires:  ghc-old-locale-devel
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-optparse-applicative-devel
-#BuildRequires:  ghc-optparse-simple-devel
-#BuildRequires:  ghc-path-devel
-#BuildRequires:  ghc-persistent-devel
-#BuildRequires:  ghc-persistent-sqlite-devel
-#BuildRequires:  ghc-persistent-template-devel
-%endif
+#BuildRequires:  ghc-old-locale-devel
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
-%if 0%{?nofedora} >= 22
-#BuildRequires:  ghc-project-template-devel
-BuildRequires:  ghc-resourcet-devel
-#BuildRequires:  ghc-retry-devel
-BuildRequires:  ghc-safe-devel
-%endif
-BuildRequires:  ghc-semigroups-devel
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-split-devel
-BuildRequires:  ghc-stm-devel
-BuildRequires:  ghc-streaming-commons-devel
-BuildRequires:  ghc-tar-devel
-%endif
+#BuildRequires:  ghc-semigroups-devel
 BuildRequires:  ghc-template-haskell-devel
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-temporary-devel
-BuildRequires:  ghc-text-devel
-%endif
 BuildRequires:  ghc-time-devel
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-transformers-base-devel
-%endif
 BuildRequires:  ghc-transformers-devel
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-unix-compat-devel
-%endif
 BuildRequires:  ghc-unix-devel
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-unordered-containers-devel
-BuildRequires:  ghc-vector-binary-instances-devel
-BuildRequires:  ghc-vector-devel
-BuildRequires:  ghc-void-devel
-BuildRequires:  ghc-word8-devel
-BuildRequires:  ghc-yaml-devel
-BuildRequires:  ghc-zlib-devel
-%endif
 ExclusiveArch:  %{ghc_arches_with_ghci}
 %if %{with tests}
 BuildRequires:  ghc-QuickCheck-devel
