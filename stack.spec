@@ -11,7 +11,6 @@ Summary:        The Haskell Tool Stack
 License:        BSD
 Url:            https://hackage.haskell.org/package/%{name}
 Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
-Source1:        https://www.stackage.org/lts-3/cabal.config
 
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
@@ -55,7 +54,6 @@ intended for use by the executable.
 
 %prep
 %setup -q
-cp -p %{SOURCE1} .
 
 
 %build
@@ -86,7 +84,6 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 * Wed Dec  9 2015 Jens Petersen <petersen@redhat.com> - 0.1.10.0-1
 - update to 0.1.10.0
 - build with ghc-7.10 and assume only ghc libs
-- use lts-3 cabal.config
 
 * Mon Nov 30 2015 Jens Petersen <petersen@redhat.com> - 0.1.8.0-1
 - 0.1.8.0
