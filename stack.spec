@@ -13,7 +13,7 @@ Url:            https://hackage.haskell.org/package/%{name}
 Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  ghc-Cabal-devel
-BuildRequires:  ghc-rpm-macros
+#BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
 BuildRequires:  ghc-binary-devel
 BuildRequires:  ghc-bytestring-devel
