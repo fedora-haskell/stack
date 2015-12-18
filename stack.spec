@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        0.1.10.0
+Version:        0.1.10.1
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -81,6 +81,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Fri Dec 18 2015 Jens Petersen <petersen@redhat.com> - 0.1.10.1-1
+- update to 0.1.10.1
+
 * Wed Dec  9 2015 Jens Petersen <petersen@redhat.com> - 0.1.10.0-1
 - update to 0.1.10.0
 - build with ghc-7.10 and assume only ghc libs
