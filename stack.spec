@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        1.0.0
+Version:        1.0.2
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -81,6 +81,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Tue Jan 19 2016 Jens Petersen <petersen@redhat.com> - 1.0.2-1
+- update to 1.0.2
+
 * Fri Jan  8 2016 Jens Petersen <petersen@redhat.com> - 1.0.0-1
 - update to 1.0.0
 
