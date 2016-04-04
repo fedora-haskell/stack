@@ -5,7 +5,7 @@
 
 Name:           stack
 Version:        1.0.4.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Haskell Tool Stack
 
 License:        BSD
@@ -45,6 +45,11 @@ BuildRequires:  zlib-devel
 %endif
 BuildRequires:  cabal-install > 1.18
 
+# for upstream binary ghc tarballs linked to libtinfo.so.5
+%if 0%{?nofedora} >= 24
+Requires:       ncurses-compat-libs
+%endif
+
 %description
 Please see the README.md for usage information, and the wiki on Github for more
 details. Also, note that the API for the library is not currently stable, and
@@ -81,6 +86,10 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Mon Apr  4 2016 Jens Petersen <petersen@redhat.com> - 1.0.4.2-2
+- require ncurses-compat-libs for F24+ to help people use upstream ghc tarballs
+  (thanks Jan Synacek)
+
 * Thu Mar 10 2016 Jens Petersen <petersen@redhat.com> - 1.0.4.2-1
 - update to 1.0.4.2
 
