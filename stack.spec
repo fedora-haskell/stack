@@ -4,8 +4,8 @@
 %bcond_with tests
 
 Name:           stack
-Version:        1.0.4.2
-Release:        2%{?dist}
+Version:        1.0.4.3
+Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
 License:        BSD
@@ -86,6 +86,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Mon Apr 11 2016 Jens Petersen <petersen@redhat.com> - 1.0.4.3-1
+- update to 1.0.4.3
+
 * Mon Apr  4 2016 Jens Petersen <petersen@redhat.com> - 1.0.4.2-2
 - require ncurses-compat-libs for F24+ to help people use upstream ghc tarballs
   (thanks Jan Synacek)
