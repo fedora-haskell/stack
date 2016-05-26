@@ -6,7 +6,7 @@
 Name:           stack
 Version:        1.1.2
 Release:        1%{?dist}
-Summary:        The Haskell Tool Stack
+Summary:        The Haskell Stack Tool
 
 License:        BSD
 Url:            https://hackage.haskell.org/package/%{name}
