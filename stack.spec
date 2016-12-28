@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        1.3.0
+Version:        1.3.2
 Release:        1%{?dist}
 Summary:        The Haskell Stack Tool
 
@@ -86,6 +86,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Wed Dec 28 2016 Jens Petersen <petersen@redhat.com> - 1.3.2-1
+- update to 1.3.2
+
 * Fri Dec 16 2016 Jens Petersen <petersen@redhat.com> - 1.3.0-1
 - 1.3.0 release
 - https://github.com/commercialhaskell/stack/releases/tag/v1.3.0
