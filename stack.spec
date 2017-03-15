@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        1.3.2
+Version:        1.4.0
 Release:        1%{?dist}
 Summary:        The Haskell Stack Tool
 
@@ -15,27 +15,107 @@ Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%
 BuildRequires:  ghc-Cabal-devel
 #BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
+BuildRequires:  ghc-aeson-devel
+#BuildRequires:  ghc-annotated-wl-pprint-devel
+BuildRequires:  ghc-ansi-terminal-devel
+BuildRequires:  ghc-async-devel
+BuildRequires:  ghc-attoparsec-devel
+BuildRequires:  ghc-base-compat-devel
+BuildRequires:  ghc-base64-bytestring-devel
 BuildRequires:  ghc-binary-devel
+#BuildRequires:  ghc-binary-tagged-devel
+BuildRequires:  ghc-blaze-builder-devel
 BuildRequires:  ghc-bytestring-devel
+#BuildRequires:  ghc-clock-devel
+BuildRequires:  ghc-conduit-devel
+BuildRequires:  ghc-conduit-extra-devel
 BuildRequires:  ghc-containers-devel
+#BuildRequires:  ghc-cryptonite-conduit-devel
+#BuildRequires:  ghc-cryptonite-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
+#BuildRequires:  ghc-either-devel
+#BuildRequires:  ghc-errors-devel
+BuildRequires:  ghc-exceptions-devel
+#BuildRequires:  ghc-extra-devel
+#BuildRequires:  ghc-fast-logger-devel
+#BuildRequires:  ghc-file-embed-devel
+#BuildRequires:  ghc-filelock-devel
 BuildRequires:  ghc-filepath-devel
+BuildRequires:  ghc-fsnotify-devel
+#BuildRequires:  ghc-generic-deriving-devel
+#BuildRequires:  ghc-gitrev-devel
+#BuildRequires:  ghc-hackage-security-devel
+BuildRequires:  ghc-hashable-devel
+#BuildRequires:  ghc-hastache-devel
+#BuildRequires:  ghc-hit-devel
+#BuildRequires:  ghc-hpack-devel
 BuildRequires:  ghc-hpc-devel
-#BuildRequires:  ghc-old-locale-devel
+#BuildRequires:  ghc-http-client-devel
+#BuildRequires:  ghc-http-client-tls-devel
+#BuildRequires:  ghc-http-conduit-devel
+BuildRequires:  ghc-http-types-devel
+#BuildRequires:  ghc-lifted-async-devel
+BuildRequires:  ghc-lifted-base-devel
+#BuildRequires:  ghc-memory-devel
+#BuildRequires:  ghc-microlens-devel
+#BuildRequires:  ghc-microlens-mtl-devel
+BuildRequires:  ghc-monad-control-devel
+#BuildRequires:  ghc-monad-logger-devel
+#BuildRequires:  ghc-monad-unlift-devel
+BuildRequires:  ghc-mtl-devel
+BuildRequires:  ghc-network-uri-devel
+#BuildRequires:  ghc-open-browser-devel
+BuildRequires:  ghc-optparse-applicative-devel
+#BuildRequires:  ghc-optparse-simple-devel
+#BuildRequires:  ghc-path-devel
+#BuildRequires:  ghc-path-io-devel
+#BuildRequires:  ghc-persistent-devel
+#BuildRequires:  ghc-persistent-sqlite-devel
+#BuildRequires:  ghc-persistent-template-devel
+#BuildRequires:  ghc-pid1-devel
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
-#BuildRequires:  ghc-semigroups-devel
+#BuildRequires:  ghc-project-template-devel
+#BuildRequires:  ghc-regex-applicative-text-devel
+BuildRequires:  ghc-resourcet-devel
+#BuildRequires:  ghc-retry-devel
+BuildRequires:  ghc-safe-devel
+#BuildRequires:  ghc-safe-exceptions-devel
+BuildRequires:  ghc-semigroups-devel
+BuildRequires:  ghc-split-devel
+BuildRequires:  ghc-stm-devel
+#BuildRequires:  ghc-store-devel
+BuildRequires:  ghc-streaming-commons-devel
+BuildRequires:  ghc-tar-devel
 BuildRequires:  ghc-template-haskell-devel
+BuildRequires:  ghc-temporary-devel
+#BuildRequires:  ghc-text-binary-devel
+BuildRequires:  ghc-text-devel
+#BuildRequires:  ghc-text-metrics-devel
 BuildRequires:  ghc-time-devel
+#BuildRequires:  ghc-tls-devel
+BuildRequires:  ghc-transformers-base-devel
 BuildRequires:  ghc-transformers-devel
+#BuildRequires:  ghc-unicode-transforms-devel
+BuildRequires:  ghc-unix-compat-devel
 BuildRequires:  ghc-unix-devel
-ExclusiveArch:  %{ghc_arches_with_ghci}
+BuildRequires:  ghc-unordered-containers-devel
+BuildRequires:  ghc-vector-binary-instances-devel
+BuildRequires:  ghc-vector-devel
+BuildRequires:  ghc-yaml-devel
+BuildRequires:  ghc-zip-archive-devel
+BuildRequires:  ghc-zlib-devel
 %if %{with tests}
 BuildRequires:  ghc-QuickCheck-devel
 BuildRequires:  ghc-hspec-devel
+BuildRequires:  ghc-mono-traversable-devel
+BuildRequires:  ghc-neat-interpolation-devel
+BuildRequires:  ghc-smallcheck-devel
+BuildRequires:  ghc-th-reify-many-devel
 %endif
 # End cabal-rpm deps
+ExclusiveArch:  %{ghc_arches_with_ghci}
 # for ignore -> pcre-heavy
 %if 0%{?nofedora} >= 22
 BuildRequires:  ghc-pcre-light-devel
@@ -86,6 +166,10 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Wed Mar 15 2017 Jens Petersen <petersen@redhat.com> - 1.4.0-1
+- update to 1.4.0
+- https://docs.haskellstack.org/en/stable/ChangeLog/#140
+
 * Wed Dec 28 2016 Jens Petersen <petersen@redhat.com> - 1.3.2-1
 - update to 1.3.2
 
