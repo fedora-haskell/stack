@@ -15,6 +15,7 @@ Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%
 BuildRequires:  ghc-Cabal-devel
 #BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
+%if 0%{?fedora} >= 25
 BuildRequires:  ghc-aeson-devel
 #BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
@@ -106,6 +107,9 @@ BuildRequires:  ghc-vector-devel
 BuildRequires:  ghc-yaml-devel
 BuildRequires:  ghc-zip-archive-devel
 BuildRequires:  ghc-zlib-devel
+%else
+BuildRequires:  ghc-libraries
+%endif
 %if %{with tests}
 BuildRequires:  ghc-QuickCheck-devel
 BuildRequires:  ghc-hspec-devel
@@ -169,6 +173,7 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 * Wed Mar 15 2017 Jens Petersen <petersen@redhat.com> - 1.4.0-1
 - update to 1.4.0
 - https://docs.haskellstack.org/en/stable/ChangeLog/#140
+- for releases use 7.10.3 copr just BR ghc-libraries
 
 * Wed Dec 28 2016 Jens Petersen <petersen@redhat.com> - 1.3.2-1
 - update to 1.3.2
