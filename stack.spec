@@ -4,7 +4,7 @@
 %bcond_with tests
 
 Name:           stack
-Version:        1.4.0
+Version:        1.5.1
 Release:        1%{?dist}
 Summary:        The Haskell Stack Tool
 
@@ -32,37 +32,50 @@ BuildRequires:  ghc-conduit-devel
 BuildRequires:  ghc-conduit-extra-devel
 BuildRequires:  ghc-containers-devel
 #BuildRequires:  ghc-cryptonite-conduit-devel
-#BuildRequires:  ghc-cryptonite-devel
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-cryptonite-devel
+%endif
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
+#BuildRequires:  ghc-echo-devel
 #BuildRequires:  ghc-either-devel
 #BuildRequires:  ghc-errors-devel
 BuildRequires:  ghc-exceptions-devel
 #BuildRequires:  ghc-extra-devel
-#BuildRequires:  ghc-fast-logger-devel
-#BuildRequires:  ghc-file-embed-devel
+BuildRequires:  ghc-fast-logger-devel
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-file-embed-devel
+%endif
 #BuildRequires:  ghc-filelock-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-fsnotify-devel
-#BuildRequires:  ghc-generic-deriving-devel
-#BuildRequires:  ghc-gitrev-devel
-#BuildRequires:  ghc-hackage-security-devel
+%if 0%{?fedora} >= 26
+BuildRequires:  ghc-generic-deriving-devel
+%endif
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-gitrev-devel
+BuildRequires:  ghc-hackage-security-devel
+%endif
 BuildRequires:  ghc-hashable-devel
 #BuildRequires:  ghc-hastache-devel
-#BuildRequires:  ghc-hit-devel
 #BuildRequires:  ghc-hpack-devel
 BuildRequires:  ghc-hpc-devel
-#BuildRequires:  ghc-http-client-devel
-#BuildRequires:  ghc-http-client-tls-devel
-#BuildRequires:  ghc-http-conduit-devel
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-http-client-devel
+BuildRequires:  ghc-http-client-tls-devel
+BuildRequires:  ghc-http-conduit-devel
+%endif
 BuildRequires:  ghc-http-types-devel
 #BuildRequires:  ghc-lifted-async-devel
 BuildRequires:  ghc-lifted-base-devel
-#BuildRequires:  ghc-memory-devel
-#BuildRequires:  ghc-microlens-devel
+%if 0%{?fedora} >= 26
+BuildRequires:  ghc-memory-devel
+BuildRequires:  ghc-microlens-devel
+%endif
 #BuildRequires:  ghc-microlens-mtl-devel
+#BuildRequires:  ghc-mintty-devel
 BuildRequires:  ghc-monad-control-devel
-#BuildRequires:  ghc-monad-logger-devel
+BuildRequires:  ghc-monad-logger-devel
 #BuildRequires:  ghc-monad-unlift-devel
 BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-uri-devel
@@ -71,9 +84,13 @@ BuildRequires:  ghc-optparse-applicative-devel
 #BuildRequires:  ghc-optparse-simple-devel
 #BuildRequires:  ghc-path-devel
 #BuildRequires:  ghc-path-io-devel
-#BuildRequires:  ghc-persistent-devel
-#BuildRequires:  ghc-persistent-sqlite-devel
-#BuildRequires:  ghc-persistent-template-devel
+%if 0%{?fedora} >= 26
+BuildRequires:  ghc-persistent-devel
+%endif
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-persistent-sqlite-devel
+BuildRequires:  ghc-persistent-template-devel
+%endif
 #BuildRequires:  ghc-pid1-devel
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
@@ -86,6 +103,7 @@ BuildRequires:  ghc-safe-devel
 BuildRequires:  ghc-semigroups-devel
 BuildRequires:  ghc-split-devel
 BuildRequires:  ghc-stm-devel
+#BuildRequires:  ghc-store-core-devel
 #BuildRequires:  ghc-store-devel
 BuildRequires:  ghc-streaming-commons-devel
 BuildRequires:  ghc-tar-devel
@@ -95,7 +113,9 @@ BuildRequires:  ghc-temporary-devel
 BuildRequires:  ghc-text-devel
 #BuildRequires:  ghc-text-metrics-devel
 BuildRequires:  ghc-time-devel
-#BuildRequires:  ghc-tls-devel
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-tls-devel
+%endif
 BuildRequires:  ghc-transformers-base-devel
 BuildRequires:  ghc-transformers-devel
 #BuildRequires:  ghc-unicode-transforms-devel
@@ -149,7 +169,7 @@ intended for use by the executable.
 %global cabal cabal
 [ -d "$HOME/.cabal" ] || %cabal update
 %cabal sandbox init
-%cabal install --force-reinstalls
+%cabal install --force-reinstalls either-4.4.1.1 .
 
 
 %install
@@ -170,6 +190,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Tue Dec  5 2017 Jens Petersen <petersen@redhat.com> - 1.5.1-1
+- update to 1.5.1
+
 * Wed Mar 15 2017 Jens Petersen <petersen@redhat.com> - 1.4.0-1
 - update to 1.4.0
 - https://docs.haskellstack.org/en/stable/ChangeLog/#140
