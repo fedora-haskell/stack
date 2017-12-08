@@ -1,16 +1,19 @@
 # nothing to see here
 %global debug_package %{nil}
 
+%global pkg_name stack
+%global pkgver %{pkg_name}-%{version}
+
 %bcond_with tests
 
-Name:           stack
-Version:        1.5.1
+Name:           %{pkg_name}
+Version:        1.6.1
 Release:        1%{?dist}
-Summary:        The Haskell Stack Tool
+Summary:        The Haskell Tool Stack
 
 License:        BSD
 Url:            https://hackage.haskell.org/package/%{name}
-Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
+Source0:        https://hackage.haskell.org/package/%{pkgver}/%{pkgver}.tar.gz
 
 BuildRequires:  ghc-Cabal-devel
 #BuildRequires:  ghc-rpm-macros
@@ -21,13 +24,11 @@ BuildRequires:  ghc-aeson-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-async-devel
 BuildRequires:  ghc-attoparsec-devel
-BuildRequires:  ghc-base-compat-devel
 BuildRequires:  ghc-base64-bytestring-devel
-BuildRequires:  ghc-binary-devel
-#BuildRequires:  ghc-binary-tagged-devel
+#BuildRequires:  ghc-bindings-uname-devel
 BuildRequires:  ghc-blaze-builder-devel
 BuildRequires:  ghc-bytestring-devel
-#BuildRequires:  ghc-clock-devel
+BuildRequires:  ghc-clock-devel
 BuildRequires:  ghc-conduit-devel
 BuildRequires:  ghc-conduit-extra-devel
 BuildRequires:  ghc-containers-devel
@@ -38,10 +39,8 @@ BuildRequires:  ghc-cryptonite-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 #BuildRequires:  ghc-echo-devel
-#BuildRequires:  ghc-either-devel
-#BuildRequires:  ghc-errors-devel
 BuildRequires:  ghc-exceptions-devel
-#BuildRequires:  ghc-extra-devel
+BuildRequires:  ghc-extra-devel
 BuildRequires:  ghc-fast-logger-devel
 %if 0%{?fedora} >= 27
 BuildRequires:  ghc-file-embed-devel
@@ -66,18 +65,18 @@ BuildRequires:  ghc-http-client-tls-devel
 BuildRequires:  ghc-http-conduit-devel
 %endif
 BuildRequires:  ghc-http-types-devel
-#BuildRequires:  ghc-lifted-async-devel
-BuildRequires:  ghc-lifted-base-devel
 %if 0%{?fedora} >= 26
 BuildRequires:  ghc-memory-devel
 BuildRequires:  ghc-microlens-devel
 %endif
 #BuildRequires:  ghc-microlens-mtl-devel
 #BuildRequires:  ghc-mintty-devel
-BuildRequires:  ghc-monad-control-devel
 BuildRequires:  ghc-monad-logger-devel
-#BuildRequires:  ghc-monad-unlift-devel
+%if 0%{?fedora} >= 28
+BuildRequires:  ghc-mono-traversable-devel
+%endif
 BuildRequires:  ghc-mtl-devel
+#BuildRequires:  ghc-neat-interpolation-devel
 BuildRequires:  ghc-network-uri-devel
 #BuildRequires:  ghc-open-browser-devel
 BuildRequires:  ghc-optparse-applicative-devel
@@ -93,13 +92,12 @@ BuildRequires:  ghc-persistent-template-devel
 %endif
 #BuildRequires:  ghc-pid1-devel
 BuildRequires:  ghc-pretty-devel
+BuildRequires:  ghc-primitive-devel
 BuildRequires:  ghc-process-devel
 #BuildRequires:  ghc-project-template-devel
 #BuildRequires:  ghc-regex-applicative-text-devel
 BuildRequires:  ghc-resourcet-devel
 #BuildRequires:  ghc-retry-devel
-BuildRequires:  ghc-safe-devel
-#BuildRequires:  ghc-safe-exceptions-devel
 BuildRequires:  ghc-semigroups-devel
 BuildRequires:  ghc-split-devel
 BuildRequires:  ghc-stm-devel
@@ -109,20 +107,19 @@ BuildRequires:  ghc-streaming-commons-devel
 BuildRequires:  ghc-tar-devel
 BuildRequires:  ghc-template-haskell-devel
 BuildRequires:  ghc-temporary-devel
-#BuildRequires:  ghc-text-binary-devel
 BuildRequires:  ghc-text-devel
 #BuildRequires:  ghc-text-metrics-devel
+BuildRequires:  ghc-th-reify-many-devel
 BuildRequires:  ghc-time-devel
 %if 0%{?fedora} >= 27
 BuildRequires:  ghc-tls-devel
 %endif
-BuildRequires:  ghc-transformers-base-devel
 BuildRequires:  ghc-transformers-devel
 #BuildRequires:  ghc-unicode-transforms-devel
 BuildRequires:  ghc-unix-compat-devel
 BuildRequires:  ghc-unix-devel
+#BuildRequires:  ghc-unliftio-devel
 BuildRequires:  ghc-unordered-containers-devel
-BuildRequires:  ghc-vector-binary-instances-devel
 BuildRequires:  ghc-vector-devel
 BuildRequires:  ghc-yaml-devel
 BuildRequires:  ghc-zip-archive-devel
@@ -133,20 +130,10 @@ BuildRequires:  ghc-libraries
 %if %{with tests}
 BuildRequires:  ghc-QuickCheck-devel
 BuildRequires:  ghc-hspec-devel
-BuildRequires:  ghc-mono-traversable-devel
-BuildRequires:  ghc-neat-interpolation-devel
 BuildRequires:  ghc-smallcheck-devel
-BuildRequires:  ghc-th-reify-many-devel
 %endif
 # End cabal-rpm deps
 ExclusiveArch:  %{ghc_arches_with_ghci}
-# for ignore -> pcre-heavy
-%if 0%{?nofedora} >= 22
-BuildRequires:  ghc-pcre-light-devel
-%else
-BuildRequires:  pcre-devel
-BuildRequires:  zlib-devel
-%endif
 BuildRequires:  cabal-install > 1.18
 
 # for upstream binary ghc tarballs linked to libtinfo.so.5
@@ -169,7 +156,7 @@ intended for use by the executable.
 %global cabal cabal
 [ -d "$HOME/.cabal" ] || %cabal update
 %cabal sandbox init
-%cabal install --force-reinstalls either-4.4.1.1 .
+%cabal install --force-reinstalls
 
 
 %install
@@ -190,6 +177,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Fri Dec  8 2017 Jens Petersen <petersen@redhat.com> - 1.6.1-1
+- update to 1.6.1
+
 * Tue Dec  5 2017 Jens Petersen <petersen@redhat.com> - 1.5.1-1
 - update to 1.5.1
 
