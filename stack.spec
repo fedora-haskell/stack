@@ -18,7 +18,8 @@ Source0:        https://hackage.haskell.org/package/%{pkgver}/%{pkgver}.tar.gz
 BuildRequires:  ghc-Cabal-devel
 #BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
-%if 0%{?fedora} >= 25
+# requires Cabal-2 to build
+%if 0%{?fedora} >= 29
 BuildRequires:  ghc-aeson-devel
 #BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
