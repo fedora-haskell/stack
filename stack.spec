@@ -53,6 +53,8 @@ BuildRequires:  ghc-generic-deriving-devel
 %endif
 %if 0%{?fedora} >= 27
 BuildRequires:  ghc-gitrev-devel
+%endif
+%if 0%{?fedora} >= 29
 BuildRequires:  ghc-hackage-security-devel
 %endif
 BuildRequires:  ghc-hashable-devel
