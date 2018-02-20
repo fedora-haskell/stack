@@ -7,7 +7,7 @@
 %bcond_with tests
 
 Name:           %{pkg_name}
-Version:        1.6.1
+Version:        1.6.3
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -21,7 +21,7 @@ BuildRequires:  ghc-Cabal-devel
 # requires Cabal-2 to build
 %if 0%{?fedora} >= 29
 BuildRequires:  ghc-aeson-devel
-#BuildRequires:  ghc-annotated-wl-pprint-devel
+BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-async-devel
 BuildRequires:  ghc-attoparsec-devel
@@ -34,50 +34,34 @@ BuildRequires:  ghc-conduit-devel
 BuildRequires:  ghc-conduit-extra-devel
 BuildRequires:  ghc-containers-devel
 #BuildRequires:  ghc-cryptonite-conduit-devel
-%if 0%{?fedora} >= 27
 BuildRequires:  ghc-cryptonite-devel
-%endif
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 #BuildRequires:  ghc-echo-devel
 BuildRequires:  ghc-exceptions-devel
 BuildRequires:  ghc-extra-devel
 BuildRequires:  ghc-fast-logger-devel
-%if 0%{?fedora} >= 27
 BuildRequires:  ghc-file-embed-devel
-%endif
 #BuildRequires:  ghc-filelock-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-fsnotify-devel
-%if 0%{?fedora} >= 26
 BuildRequires:  ghc-generic-deriving-devel
-%endif
-%if 0%{?fedora} >= 27
 BuildRequires:  ghc-gitrev-devel
-%endif
-%if 0%{?fedora} >= 29
 BuildRequires:  ghc-hackage-security-devel
-%endif
 BuildRequires:  ghc-hashable-devel
 #BuildRequires:  ghc-hastache-devel
 #BuildRequires:  ghc-hpack-devel
 BuildRequires:  ghc-hpc-devel
-%if 0%{?fedora} >= 27
 BuildRequires:  ghc-http-client-devel
 BuildRequires:  ghc-http-client-tls-devel
 BuildRequires:  ghc-http-conduit-devel
-%endif
 BuildRequires:  ghc-http-types-devel
-%if 0%{?fedora} >= 26
 BuildRequires:  ghc-memory-devel
 BuildRequires:  ghc-microlens-devel
-%endif
 #BuildRequires:  ghc-microlens-mtl-devel
 #BuildRequires:  ghc-mintty-devel
 BuildRequires:  ghc-monad-logger-devel
-%if 0%{?fedora} >= 28
 BuildRequires:  ghc-mono-traversable-devel
-%endif
 BuildRequires:  ghc-mtl-devel
 #BuildRequires:  ghc-neat-interpolation-devel
 BuildRequires:  ghc-network-uri-devel
@@ -86,13 +70,9 @@ BuildRequires:  ghc-optparse-applicative-devel
 #BuildRequires:  ghc-optparse-simple-devel
 #BuildRequires:  ghc-path-devel
 #BuildRequires:  ghc-path-io-devel
-%if 0%{?fedora} >= 26
 BuildRequires:  ghc-persistent-devel
-%endif
-%if 0%{?fedora} >= 27
 BuildRequires:  ghc-persistent-sqlite-devel
 BuildRequires:  ghc-persistent-template-devel
-%endif
 #BuildRequires:  ghc-pid1-devel
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-primitive-devel
@@ -114,9 +94,7 @@ BuildRequires:  ghc-text-devel
 #BuildRequires:  ghc-text-metrics-devel
 BuildRequires:  ghc-th-reify-many-devel
 BuildRequires:  ghc-time-devel
-%if 0%{?fedora} >= 27
 BuildRequires:  ghc-tls-devel
-%endif
 BuildRequires:  ghc-transformers-devel
 #BuildRequires:  ghc-unicode-transforms-devel
 BuildRequires:  ghc-unix-compat-devel
@@ -137,10 +115,12 @@ BuildRequires:  ghc-smallcheck-devel
 %endif
 # End cabal-rpm deps
 ExclusiveArch:  %{ghc_arches_with_ghci}
-BuildRequires:  cabal-install > 1.18
+BuildRequires:  cabal-install
+# for digest
+BuildRequires:  zlib-devel
 
 # for upstream binary ghc tarballs linked to libtinfo.so.5
-%if 0%{?nofedora} >= 24
+%if 0%{?fedora} >= 24
 Requires:       ncurses-compat-libs
 %endif
 
@@ -159,7 +139,7 @@ intended for use by the executable.
 %global cabal cabal
 [ -d "$HOME/.cabal" ] || %cabal update
 %cabal sandbox init
-%cabal install --force-reinstalls
+%cabal install --force-reinstalls happy .
 
 
 %install
@@ -180,6 +160,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Sat Jan 13 2018 Jens Petersen <petersen@redhat.com> - 1.6.3-1
+- update to 1.6.3
+
 * Fri Dec  8 2017 Jens Petersen <petersen@redhat.com> - 1.6.1-1
 - update to 1.6.1
 
