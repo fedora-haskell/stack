@@ -7,7 +7,7 @@
 %bcond_with tests
 
 Name:           %{pkg_name}
-Version:        1.6.3
+Version:        1.6.5
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -19,7 +19,7 @@ BuildRequires:  ghc-Cabal-devel
 #BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
 # requires Cabal-2 to build
-%if 0%{?fedora} >= 29
+%if 0%{?fedora} >= 28
 BuildRequires:  ghc-aeson-devel
 BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
@@ -160,6 +160,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Wed Feb 21 2018 Jens Petersen <petersen@redhat.com> - 1.6.5-1
+- update to 1.6.5
+
 * Sat Jan 13 2018 Jens Petersen <petersen@redhat.com> - 1.6.3-1
 - update to 1.6.3
 
