@@ -11,7 +11,7 @@
 
 Name:           %{pkg_name}
 Version:        1.7.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Haskell Tool Stack
 
 License:        BSD
@@ -122,7 +122,8 @@ BuildRequires:  happy
 %endif
 # for digest
 BuildRequires:  zlib-devel
-
+Requires:       gcc
+Requires:       gmp-devel
 # for upstream binary ghc tarballs linked to libtinfo.so.5
 %if 0%{?fedora} >= 24
 Requires:       ncurses-compat-libs
@@ -168,6 +169,9 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Wed Jul 25 2018 Jens Petersen <petersen@redhat.com> - 1.7.1-2
+- require gcc and gmp-devel (#1)
+
 * Sun Apr 29 2018 Jens Petersen <petersen@redhat.com> - 1.7.1-1
 - update to 1.7.1
 - use revised .cabal file
