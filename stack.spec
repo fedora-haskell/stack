@@ -20,9 +20,10 @@ Source0:        https://hackage.haskell.org/package/%{pkgver}/%{pkgver}.tar.gz
 Source1:        https://hackage.haskell.org/package/%{pkgver}/%{name}.cabal#/%{pkgver}.cabal
 
 BuildRequires:  ghc-Cabal-devel
-#BuildRequires:  ghc-rpm-macros
+# for cabal-tweak-flag
+BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
-# requires Cabal-2 to build
+# requires Cabal-2 (ghc-8.2) to build
 %if 0%{?fedora} >= 28
 BuildRequires:  ghc-aeson-devel
 BuildRequires:  ghc-annotated-wl-pprint-devel
@@ -140,6 +141,7 @@ See haskellstack.org or the doc directory for more information.
 %setup -q
 # no bounds in tarball
 cp -p %SOURCE1 %{name}.cabal
+cabal-tweak-flag disable-git-info True
 
 
 %build
