@@ -10,7 +10,7 @@
 %bcond_with tests
 
 Name:           %{pkg_name}
-Version:        1.9.1
+Version:        1.9.1.1
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -141,7 +141,6 @@ See haskellstack.org or the doc directory for more information.
 %setup -q
 # no bounds in tarball
 cp -p %SOURCE1 %{name}.cabal
-cabal-tweak-flag disable-git-info True
 
 
 %build
@@ -171,6 +170,10 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Mon Nov 19 2018 Jens Petersen <petersen@redhat.com> - 1.9.1.1-1
+- 1.9.1.1 release
+- https://docs.haskellstack.org/en/stable/ChangeLog/#v1911
+
 * Fri Oct 19 2018 Jens Petersen <petersen@redhat.com> - 1.9.1-1
 - 1.9.1 release
 - https://docs.haskellstack.org/en/stable/ChangeLog/#v191
