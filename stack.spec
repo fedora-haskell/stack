@@ -10,19 +10,21 @@
 %bcond_with tests
 
 Name:           %{pkg_name}
-Version:        1.9.1.1
+Version:        1.9.3
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
 License:        BSD
 Url:            https://hackage.haskell.org/package/%{name}
+# Begin cabal-rpm sources:
 Source0:        https://hackage.haskell.org/package/%{pkgver}/%{pkgver}.tar.gz
 Source1:        https://hackage.haskell.org/package/%{pkgver}/%{name}.cabal#/%{pkgver}.cabal
+# End cabal-rpm sources
 
+# Begin cabal-rpm deps:
 BuildRequires:  ghc-Cabal-devel
 # for cabal-tweak-flag
 BuildRequires:  ghc-rpm-macros
-# Begin cabal-rpm deps:
 # requires Cabal-2 (ghc-8.2) to build
 %if 0%{?fedora} >= 28
 BuildRequires:  ghc-aeson-devel
@@ -36,7 +38,7 @@ BuildRequires:  ghc-bytestring-devel
 BuildRequires:  ghc-conduit-devel
 BuildRequires:  ghc-conduit-extra-devel
 BuildRequires:  ghc-containers-devel
-#BuildRequires:  ghc-cryptonite-conduit-devel
+BuildRequires:  ghc-cryptonite-conduit-devel
 BuildRequires:  ghc-cryptonite-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
@@ -48,7 +50,7 @@ BuildRequires:  ghc-file-embed-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-fsnotify-devel
 BuildRequires:  ghc-generic-deriving-devel
-BuildRequires:  ghc-gitrev-devel
+#BuildRequires:  ghc-githash-devel
 BuildRequires:  ghc-hackage-security-devel
 BuildRequires:  ghc-hashable-devel
 #BuildRequires:  ghc-hpack-devel
@@ -68,7 +70,7 @@ BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-uri-devel
 #BuildRequires:  ghc-open-browser-devel
 BuildRequires:  ghc-optparse-applicative-devel
-#BuildRequires:  ghc-optparse-simple-devel
+BuildRequires:  ghc-optparse-simple-devel
 #BuildRequires:  ghc-path-devel
 #BuildRequires:  ghc-path-io-devel
 BuildRequires:  ghc-persistent-devel
@@ -81,7 +83,9 @@ BuildRequires:  ghc-process-devel
 #BuildRequires:  ghc-regex-applicative-text-devel
 BuildRequires:  ghc-resourcet-devel
 #BuildRequires:  ghc-retry-devel
-#BuildRequires:  ghc-rio-devel
+%if 0%{?fedora} >= 29
+BuildRequires:  ghc-rio-devel
+%endif
 BuildRequires:  ghc-semigroups-devel
 BuildRequires:  ghc-split-devel
 BuildRequires:  ghc-stm-devel
@@ -101,7 +105,9 @@ BuildRequires:  ghc-typed-process-devel
 #BuildRequires:  ghc-unicode-transforms-devel
 BuildRequires:  ghc-unix-compat-devel
 BuildRequires:  ghc-unix-devel
-#BuildRequires:  ghc-unliftio-devel
+%if 0%{?fedora} >= 29
+BuildRequires:  ghc-unliftio-devel
+%endif
 BuildRequires:  ghc-unordered-containers-devel
 BuildRequires:  ghc-vector-devel
 BuildRequires:  ghc-yaml-devel
@@ -170,6 +176,10 @@ install -p .cabal-sandbox/bin/%{name} %{buildroot}%{_bindir}
 
 
 %changelog
+* Fri Dec  7 2018 Jens Petersen <petersen@redhat.com> - 1.9.3-1
+- 1.9.3 release
+- https://docs.haskellstack.org/en/stable/ChangeLog/#v193
+
 * Mon Nov 19 2018 Jens Petersen <petersen@redhat.com> - 1.9.1.1-1
 - 1.9.1.1 release
 - https://docs.haskellstack.org/en/stable/ChangeLog/#v1911
