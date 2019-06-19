@@ -10,7 +10,7 @@
 %bcond_with tests
 
 Name:           %{pkg_name}
-Version:        1.9.3
+Version:        1.9.3.1
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -50,7 +50,9 @@ BuildRequires:  ghc-file-embed-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-fsnotify-devel
 BuildRequires:  ghc-generic-deriving-devel
-#BuildRequires:  ghc-githash-devel
+%if 0%{?fedora} >= 30
+BuildRequires:  ghc-githash-devel
+%endif
 BuildRequires:  ghc-hackage-security-devel
 BuildRequires:  ghc-hashable-devel
 #BuildRequires:  ghc-hpack-devel
@@ -124,7 +126,7 @@ BuildRequires:  ghc-smallcheck-devel
 # End cabal-rpm deps
 ExclusiveArch:  %{ghc_arches_with_ghci}
 BuildRequires:  cabal-install
-%if 0%{?fedora} >= 28
+%if 0%{?rhel}
 BuildRequires:  happy
 %endif
 # for digest
@@ -152,7 +154,7 @@ cp -p %SOURCE1 %{name}.cabal
 %build
 cabal update
 cabal sandbox init
-%if 0%{?rhel} || 0%{?fedora} < 28
+%if 0%{?rhel}
 cabal install happy
 %endif
 cabal install --force-reinstalls .
