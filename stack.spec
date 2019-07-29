@@ -13,7 +13,7 @@
 %bcond_with tests
 
 Name:           %{pkg_name}
-Version:        2.1.1.1
+Version:        2.1.3.1
 Release:        1%{?dist}
 Summary:        The Haskell Tool Stack
 
@@ -25,8 +25,8 @@ Source1:        https://hackage.haskell.org/package/%{pkgver}/%{name}.cabal#/%{p
 # End cabal-rpm sources
 
 # Begin cabal-rpm deps:
-BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
+BuildRequires:  ghc-Cabal-devel
 # requires Cabal-2 (ghc-8.2) to build
 %if 0%{?fedora} >= 28
 BuildRequires:  ghc-aeson-devel
@@ -77,7 +77,7 @@ BuildRequires:  ghc-network-uri-devel
 #BuildRequires:  ghc-open-browser-devel
 BuildRequires:  ghc-optparse-applicative-devel
 BuildRequires:  ghc-optparse-simple-devel
-#BuildRequires:  ghc-pantry-tmp-devel
+#BuildRequires:  ghc-pantry-devel
 #BuildRequires:  ghc-path-devel
 #BuildRequires:  ghc-path-io-devel
 BuildRequires:  ghc-persistent-devel
@@ -102,7 +102,7 @@ BuildRequires:  ghc-streaming-commons-devel
 BuildRequires:  ghc-tar-devel
 BuildRequires:  ghc-template-haskell-devel
 BuildRequires:  ghc-temporary-devel
-#BuildRequires:  ghc-terminal-size-devel
+BuildRequires:  ghc-terminal-size-devel
 BuildRequires:  ghc-text-devel
 #BuildRequires:  ghc-text-metrics-devel
 BuildRequires:  ghc-th-reify-many-devel
@@ -186,11 +186,13 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %files
+%license  .cabal-sandbox/share/doc/*/*
 # Begin cabal-rpm files:
-%license LICENSE .cabal-sandbox/share/doc/*/*
-%doc CONTRIBUTING.md ChangeLog.md README.md doc
+%license LICENSE
+%doc CONTRIBUTING.md ChangeLog.md README.md
 %{_bindir}/%{name}
 # End cabal-rpm files
+%doc doc
 
 
 %changelog
