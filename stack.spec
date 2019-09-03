@@ -141,8 +141,8 @@ BuildRequires:  zlib-devel
 Requires:       gcc
 Requires:       gmp-devel
 # for older binary ghc tarballs linked to libtinfo.so.5
-%if 0%{?fedora} >= 24
-Requires:       ncurses-compat-libs
+%if 0%{?fedora} >= 24 || 0%{?rhel} > 7
+Recommends:       ncurses-compat-libs
 %endif
 
 %description
