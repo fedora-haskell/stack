@@ -196,8 +196,13 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Tue Jul 23 2019 Jens Petersen <petersen@redhat.com> - 2.1.3.1-1
+- update to 2.1.3.1
+- https://docs.haskellstack.org/en/stable/ChangeLog/#v213
+
 * Wed Jun 19 2019 Jens Petersen <petersen@redhat.com> - 2.1.1.1-1
 - update to 2.1.1.1
+- https://docs.haskellstack.org/en/stable/ChangeLog/#v211
 
 * Fri Dec  7 2018 Jens Petersen <petersen@redhat.com> - 1.9.3-1
 - 1.9.3 release
