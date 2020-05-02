@@ -27,7 +27,7 @@ Source1:        https://hackage.haskell.org/package/%{pkgver}/%{name}.cabal#/%{p
 # Begin cabal-rpm deps:
 BuildRequires:  ghc-rpm-macros
 BuildRequires:  ghc-Cabal-devel
-%if %{defined fedora}
+%if %{defined fedora} >= 31
 BuildRequires:  ghc-aeson-devel
 BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
@@ -78,10 +78,8 @@ BuildRequires:  ghc-network-uri-devel
 BuildRequires:  ghc-optparse-applicative-devel
 BuildRequires:  ghc-optparse-simple-devel
 #BuildRequires:  ghc-pantry-devel
-%if 0%{?fedora} >= 31
 BuildRequires:  ghc-path-devel
 BuildRequires:  ghc-path-io-devel
-%endif
 BuildRequires:  ghc-persistent-devel
 BuildRequires:  ghc-persistent-sqlite-devel
 BuildRequires:  ghc-persistent-template-devel
@@ -103,17 +101,13 @@ BuildRequires:  ghc-tar-devel
 BuildRequires:  ghc-template-haskell-devel
 BuildRequires:  ghc-temporary-devel
 BuildRequires:  ghc-text-devel
-%if 0%{?fedora} >= 31
 BuildRequires:  ghc-text-metrics-devel
-%endif
 BuildRequires:  ghc-th-reify-many-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-tls-devel
 BuildRequires:  ghc-transformers-devel
 BuildRequires:  ghc-typed-process-devel
-%if 0%{?fedora} >= 31
 BuildRequires:  ghc-unicode-transforms-devel
-%endif
 BuildRequires:  ghc-unix-devel
 BuildRequires:  ghc-unix-compat-devel
 BuildRequires:  ghc-unliftio-devel
@@ -140,9 +134,7 @@ BuildRequires:  ghc-bifunctors-devel
 BuildRequires:  ghc-scientific-devel
 # for missing dep 'mustache':
 BuildRequires:  ghc-cmdargs-devel
-%if 0%{?fedora} >= 31
 BuildRequires:  ghc-either-devel
-%endif
 BuildRequires:  ghc-parsec-devel
 BuildRequires:  ghc-scientific-devel
 BuildRequires:  ghc-th-lift-devel
@@ -176,7 +168,9 @@ BuildRequires:  zlib-devel
 Requires:       gcc
 Requires:       gmp-devel
 BuildRequires:  cabal-install
+%if %{defined fedora}
 BuildRequires:  happy
+%endif
 %endif
 
 %description
@@ -197,12 +191,12 @@ cp -bp %{SOURCE1} %{name}.cabal
 %build
 # Begin cabal-rpm build:
 %global cabal cabal
-%cabal v1-update
+%cabal update
 %cabal sandbox init
 %if 0%{?rhel}
 %cabal install happy
 %endif
-%cabal v1-install --only-dependencies --force-reinstalls
+%cabal install --only-dependencies --force-reinstalls
 %ghc_bin_build
 # End cabal-rpm build
 
