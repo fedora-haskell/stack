@@ -208,6 +208,9 @@ find %{buildroot}%{_libdir} -name 'libHS%{pkgver}-*.so' -delete
 rm -r %{buildroot}%{ghclibdir}
 # End cabal-rpm install
 
+mkdir -p %{buildroot}%{_datadir}/bash-completion/completions/
+%{buildroot}%{_bindir}/stack --bash-completion-script stack > %{buildroot}%{_datadir}/bash-completion/completions/stack
+
 
 %files
 %license .cabal-sandbox/share/doc/*/*
@@ -217,6 +220,7 @@ rm -r %{buildroot}%{ghclibdir}
 %{_bindir}/%{name}
 # End cabal-rpm files
 %doc doc
+%{_datadir}/bash-completion/completions/stack
 
 
 %changelog
